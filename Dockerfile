@@ -1,38 +1,40 @@
 FROM ubuntu:18.04
 MAINTAINER <cpasternack@users.noreply.github.com> 
 
-# Make sure the package repository is up to date.
-RUN apt-get -y update 
-
 # Set timezone for debian tzdata with script
 # Thanks: https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image/949998
 # https://serverfault.com/users/293588/romeo-ninov
 ADD ./timezone.sh /timezone.sh
-RUN chmod +x /timezone.sh
-RUN /timezone.sh
+RUN chmod +x /timezone.sh && \
+/timezone.sh
 
 # Install openJDK11 from repo
-RUN apt-get install -y default-jdk
+RUN apt-get update && \
+apt-get install -y --no-install-recommends \
+  default-jdk
 
 # Install git
-RUN apt-get install -y git
+RUN apt-get install -y --no-install-recommends \
+  git
 
 # Install OpenSSH server
-RUN apt-get install -y openssh-server && \
+RUN apt-get install -y --no-install-recommends \
+  openssh-server && \
   sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd && \
   mkdir -p /var/run/sshd
 
 # Add Mono from the mono project
 # Directions from: https://www.mono-project.com/download/stable/#download-lin
-RUN apt install gnupg ca-certificates
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-RUN echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list
-RUN apt update -y
-RUN apt-get update -y
+RUN apt install apt-transport-https ca-certificates gnupg && \
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+  echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list && \
+  apt update -y && \
+  apt-get update -y
 
-# Install Mono
-RUN apt install -y mono-complete
-RUN apt-get install -y nuget
+# Install Mono and nuget
+RUN apt install -y --no-install-recommends \
+  mono-complete && \
+  nuget
 
 # Update nuget
 RUN nuget update -self
