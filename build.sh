@@ -7,5 +7,5 @@
 ######################
 
 
-#docker build --rm --squash --label "version=1.0" --label "maintaner=C Pasternack <cpasternack@noreply.github.com>" -t cpasternack/jenkins_mono_worker:latest -t cpasternack/jenkins_mono_worker:v1.0 .
-docker build --rm --label "version=1.0" --label "maintaner=C Pasternack <cpasternack@noreply.github.com>" -t cpasternack/jenkins_mono_worker:latest -t cpasternack/jenkins_mono_worker:v1.0 .
+#docker build --rm --squash --label "version=openjdk8" --label "maintaner=C Pasternack <cpasternack@users.noreply.github.com>" -t cpasternack/jenkins_mono_worker:lts -t cpasternack/jenkins_mono_worker:openjdk8 .
+docker build --rm --label "version=openjdk11" --label "maintaner=C Pasternack <cpasternack@users.noreply.github.com>" -t cpasternack/jenkins_mono_worker:latest -t cpasternack/jenkins_mono_worker:openjdk11 .
