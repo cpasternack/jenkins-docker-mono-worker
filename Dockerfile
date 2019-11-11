@@ -38,7 +38,9 @@ RUN apt-get install -y nuget
 RUN nuget update -self
 
 # Cleanup old packages
-RUN apt-get -y autoremove
+RUN apt-get -y autoremove && \
+apt-get -y clean && \
+rm -rf /var/lib/apt/lists/*
 
 # Add user jenkins to the image
 RUN adduser --quiet jenkins &&\
