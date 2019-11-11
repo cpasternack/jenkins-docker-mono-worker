@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER <cpasternack@noreply.github.com> 
+MAINTAINER <cpasternack@users.noreply.github.com> 
 
 # Make sure the package repository is up to date.
 RUN apt-get -y update 
@@ -11,14 +11,8 @@ ADD ./timezone.sh /timezone.sh
 RUN chmod +x /timezone.sh
 RUN /timezone.sh
 
-# Add PPA
-RUN apt install software-properties-common apt-transport-https -y
-
-# Add openJDK-r ppa repo
-RUN add-apt-repository ppa:openjdk-r/ppa -y
-
-# Install openJDK from PPA
-RUN apt install openjdk-8-jdk openjdk-8-jre -y
+# Install openJDK11 from repo
+RUN apt-get install -y default-jdk
 
 # Install git
 RUN apt-get install -y git
