@@ -36,7 +36,7 @@ RUN curl https://download.mono-project.com/repo/xamarin.gpg | apt-key add - && \
 
 # Install Mono and nuget
 RUN apt install -y --no-install-recommends \
-  mono-complete && \
+  mono-complete \
   nuget
 
 # Update nuget
