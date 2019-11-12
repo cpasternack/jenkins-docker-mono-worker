@@ -8,6 +8,7 @@ Builds an Ubuntu 18.04 image with openSSH server to support jenkins msbuild work
 
 ## Notes:
 This is not a very optimised dockerfile or image yet. I have been testing this out with jenkins versions matching the openjdk versions in the dockerfile.
+This builds mono 6, with pre-compile using llvm.
 
 ## TODO:
 - 11/2019: Add Jenkinsfile for local building and tagging
