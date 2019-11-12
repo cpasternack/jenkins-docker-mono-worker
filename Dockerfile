@@ -16,7 +16,8 @@ RUN apt-get install -y --no-install-recommends \
 # Install curl and git
 RUN apt-get install -y --no-install-recommends \
   curl \
-  git
+  git \
+  gnupg
 
 # Install OpenSSH server
 RUN apt-get install -y --no-install-recommends \
