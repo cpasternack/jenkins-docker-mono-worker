@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER <cpasternack@users.noreply.github.com> 
+LABEL maintainer="cpasternack@users.noreply.github.com" 
 
 # Set timezone for debian tzdata with script
 # Thanks: https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image/949998
