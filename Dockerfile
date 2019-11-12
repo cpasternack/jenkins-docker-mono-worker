@@ -10,11 +10,12 @@ RUN chmod +x /timezone.sh && \
 
 # Install openJDK11 from repo
 RUN apt-get install -y --no-install-recommends \
-  openjdk-11-jdk-headless
+  openjdk-11-jdk-headless \
+  openjdk-11-jre-headless
 
 # Install curl and git
 RUN apt-get install -y --no-install-recommends \
-  curl && \
+  curl \
   git
 
 # Install OpenSSH server
