@@ -9,12 +9,12 @@ RUN chmod +x /timezone.sh && \
 /timezone.sh
 
 # Install openJDK11 from repo
-RUN apt-get update && \
-apt-get install -y --no-install-recommends \
-  default-jdk
-
-# Install git
 RUN apt-get install -y --no-install-recommends \
+  openjdk-11-jdk-headless
+
+# Install curl and git
+RUN apt-get install -y --no-install-recommends \
+  curl && \
   git
 
 # Install OpenSSH server
@@ -25,8 +25,9 @@ RUN apt-get install -y --no-install-recommends \
 
 # Add Mono from the mono project
 # Directions from: https://www.mono-project.com/download/stable/#download-lin
-RUN apt install apt-transport-https ca-certificates gnupg && \
-  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+# 11/2019: key not found in hkp://keyserver.ubuntu.com:80
+# https://github.com/mono/mono/issues/9891
+RUN curl https://download.mono-project.com/repo/xamarin.gpg | apt-key add - && \
   echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | tee /etc/apt/sources.list.d/mono-official-stable.list && \
   apt update -y && \
   apt-get update -y
